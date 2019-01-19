@@ -37,6 +37,7 @@ import com.myscript.iink.uireferenceimplementation.InputController;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     conf.setStringArray("configuration-manager.search-path", new String[]{confDir});
     String tempDir = getFilesDir().getPath() + File.separator + "tmp";
     conf.setString("content-package.temp-folder", tempDir);
+    conf.setString("lang", "zh_CN");
+
+
 
     setContentView(R.layout.activity_main);
 
