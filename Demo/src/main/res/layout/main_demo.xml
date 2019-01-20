@@ -10,7 +10,7 @@
         android:textSize="20sp"
         android:gravity="left|center_vertical"
         android:layout_height="wrap_content" />
-    <com.myscript.iink.demo.MyByNote
+    <com.myscript.iink.demo.mydemo.MyByNote
         android:id="@+id/by_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

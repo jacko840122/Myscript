@@ -7,10 +7,7 @@ build/
 .idea
 local.properties
 
-/Demo/src/main/assets/conf
-/Demo/src/main/assets/resources
-/GetStarted/src/main/assets/conf
-/GetStarted/src/main/assets/resources
+
 
 .DS_Store
 captures/

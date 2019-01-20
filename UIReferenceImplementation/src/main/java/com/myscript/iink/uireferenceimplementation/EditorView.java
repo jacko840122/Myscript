@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EditorView extends FrameLayout implements IRenderTarget, IEditorListener {
+public class EditorView extends FrameLayout implements IRenderTarget {
   private int viewWidth;
   private int viewHeight;
 
@@ -174,9 +174,9 @@ public class EditorView extends FrameLayout implements IRenderTarget, IEditorLis
       }
     }
 
-    editor.addListener(this);
+//    editor.addListener(this);
 
-    ArrayList<PointerEvent> events = new ArrayList<PointerEvent>();
+//    ArrayList<PointerEvent> events = new ArrayList<PointerEvent>();
 //
 //// Stroke 1
 //    events.add(new PointerEvent().down(184.f, 124.f));
@@ -208,78 +208,78 @@ public class EditorView extends FrameLayout implements IRenderTarget, IEditorLis
 // Feed the editor
 //    editor.pointerEvents(events.toArray(new PointerEvent[0]), false);
 
-    try{
-      displayMetrics = getResources().getDisplayMetrics();
-      renderer = engine.createRenderer(displayMetrics.xdpi, displayMetrics.ydpi, this);
-      editor=engine.createEditor(renderer);
-      AssetManager assetManager = getContext().getApplicationContext().getAssets();
-      Map<String, Typeface> typefaceMap = FontUtils.loadFontsFromAssets(assetManager);
-      editor.setFontMetricsProvider(new FontMetricsProvider(displayMetrics,typefaceMap));
-      File file = new File(getContext().getFilesDir(), "shit");
-      ContentPackage newPackage = editor.getEngine().createPackage(file);
-      ContentPart newPart = newPackage.createPart("Text");
-      editor.setPart(newPart);
-      List<PointEvent> list= PointEvent.deserialize(new File("/mnt/sdcard/aa.bb"));
-      List<PointerEvent> desList=new ArrayList<>();
-      for(PointEvent pointEvent:list){
-
-        PointerEventType eventType=PointerEventType.DOWN;
-        switch (pointEvent.eventType){
-          case 0:
-            eventType=PointerEventType.DOWN;
-            break;
-          case 1:
-            eventType=PointerEventType.MOVE;
-            break;
-
-          case 2:
-            eventType=PointerEventType.UP;
-            break;
-
-          case 3:
-            eventType=PointerEventType.CANCEL;
-            break;
-        }
-
-        PointerType pointerType=PointerType.TOUCH;
-        switch (pointEvent.pointType){
-          case 0:
-            pointerType=PointerType.PEN;
-            break;
-          case 1:
-            pointerType=PointerType.TOUCH;
-            break;
-
-          case 2:
-            pointerType=PointerType.ERASER;
-            break;
-
-        }
-        PointerEvent pointerEvent=new PointerEvent(eventType,pointEvent.x,pointEvent.y, -1,0
-                ,pointerType,-1);
-
-        desList.add(pointerEvent);
-      }
-
-      editor.addListener(this);
-      exportParams = editor.getEngine().createParameterSet();
-      exportParams.setBoolean("export.jiix.strokes", false);
-      exportParams.setBoolean("export.jiix.bounding-box", false);
-      exportParams.setBoolean("export.jiix.glyphs", false);
-      exportParams.setBoolean("export.jiix.primitives", false);
-      exportParams.setBoolean("export.jiix.chars", false);
-      editor.clear();
-      editor.pointerEvents((PointerEvent[]) desList.toArray(new PointerEvent[0]),false);
-
-      ParameterSet params = engine.createParameterSet();
-// Set the appropriate configuration to exclude strokes from the export
-      params.setBoolean("export.jiix.strokes", false);
-      String json=editor.export_(null,MimeType.JIIX,params);
-      editor.waitForIdle();
-      Log.d("shit","editor.export_="+json);
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+//    try{
+//      displayMetrics = getResources().getDisplayMetrics();
+//      renderer = engine.createRenderer(displayMetrics.xdpi, displayMetrics.ydpi, this);
+//      editor=engine.createEditor(renderer);
+//      AssetManager assetManager = getContext().getApplicationContext().getAssets();
+//      Map<String, Typeface> typefaceMap = FontUtils.loadFontsFromAssets(assetManager);
+//      editor.setFontMetricsProvider(new FontMetricsProvider(displayMetrics,typefaceMap));
+//      File file = new File(getContext().getFilesDir(), "shit");
+//      ContentPackage newPackage = editor.getEngine().createPackage(file);
+//      ContentPart newPart = newPackage.createPart("Text");
+//      editor.setPart(newPart);
+//      List<PointEvent> list= PointEvent.deserialize(new File("/mnt/sdcard/aa.bb"));
+//      List<PointerEvent> desList=new ArrayList<>();
+//      for(PointEvent pointEvent:list){
+//
+//        PointerEventType eventType=PointerEventType.DOWN;
+//        switch (pointEvent.eventType){
+//          case 0:
+//            eventType=PointerEventType.DOWN;
+//            break;
+//          case 1:
+//            eventType=PointerEventType.MOVE;
+//            break;
+//
+//          case 2:
+//            eventType=PointerEventType.UP;
+//            break;
+//
+//          case 3:
+//            eventType=PointerEventType.CANCEL;
+//            break;
+//        }
+//
+//        PointerType pointerType=PointerType.TOUCH;
+//        switch (pointEvent.pointType){
+//          case 0:
+//            pointerType=PointerType.PEN;
+//            break;
+//          case 1:
+//            pointerType=PointerType.TOUCH;
+//            break;
+//
+//          case 2:
+//            pointerType=PointerType.ERASER;
+//            break;
+//
+//        }
+//        PointerEvent pointerEvent=new PointerEvent(eventType,pointEvent.x,pointEvent.y, -1,0
+//                ,pointerType,-1);
+//
+//        desList.add(pointerEvent);
+//      }
+//
+//      editor.addListener(this);
+//      exportParams = editor.getEngine().createParameterSet();
+//      exportParams.setBoolean("export.jiix.strokes", false);
+//      exportParams.setBoolean("export.jiix.bounding-box", false);
+//      exportParams.setBoolean("export.jiix.glyphs", false);
+//      exportParams.setBoolean("export.jiix.primitives", false);
+//      exportParams.setBoolean("export.jiix.chars", false);
+//      editor.clear();
+//      editor.pointerEvents((PointerEvent[]) desList.toArray(new PointerEvent[0]),false);
+//
+//      ParameterSet params = engine.createParameterSet();
+//// Set the appropriate configuration to exclude strokes from the export
+//      params.setBoolean("export.jiix.strokes", false);
+//      String json=editor.export_(null,MimeType.JIIX,params);
+//      editor.waitForIdle();
+//      Log.d("shit","editor.export_="+json);
+//    }catch (Exception e){
+//      e.printStackTrace();
+//    }
   }
 
   private ParameterSet exportParams;
@@ -423,31 +423,4 @@ public class EditorView extends FrameLayout implements IRenderTarget, IEditorLis
     invalidate(renderer, l, t, w, h, EnumSet.allOf(LayerType.class));
   }
 
-
-  @Override
-  public void partChanging(Editor editor, ContentPart contentPart, ContentPart contentPart1) {
-
-  }
-
-  @Override
-  public void partChanged(Editor editor) {
-
-  }
-
-  @Override
-  public void contentChanged(Editor editor, String[] strings) {
-    String str= null;
-    try {
-      str = editor.export_(editor.getRootBlock(),MimeType.JIIX, exportParams);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    //editor.
-    Log.d("ff",str);
-  }
-
-  @Override
-  public void onError(Editor editor, String s, String s1) {
-
-  }
 }
